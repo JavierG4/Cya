@@ -14,3 +14,8 @@
 // Enlaces de inter´es
 // Historial de revisiones
 // 12/09/2023 - Creaci´on (primera versi´on) del c´odigo
+#include<iostream>
+#include<stdlib.h>
+#include<fstream>
+
+void lectura();
