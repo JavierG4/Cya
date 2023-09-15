@@ -12,7 +12,6 @@
 // para ... (indicar brevemente el objetivo)
 // Referencias:
 // Enlaces de inter´es
-/
 // Historial de revisiones
 // 12/09/2023 - Creaci´on (primera versi´on) del c´odigo
 #include <iostream>
@@ -21,18 +20,26 @@
 #include <string.h>
 #include <sstream>
 #include <map>
-void lectura(){
-  std::ifstream archivo{argv 1};
+#include "p01_single_grades.h"
+
+void lectura(std::map<std::string,float>& mapa, std::string param){
+  std::ifstream archivo{param};
   std::string texto;
-  archivo.open()
+  std::string alu;
+  float nota;
   if (archivo.fail()) {
     std::cout << "No se puedo abrir el archivo";
     exit(1);
   }
-  while(std::getline(archivo,texto)){
-    std::istringstream fluejo_entrada(texto);
-    std::map<char,int> mymap;
-
+  while(archivo >> alu >> nota) {        
+    if(mapa[alu] > nota) {
+      continue;
+    }
+    mapa[alu] = nota;
   }
-
 }
+void escritura(std::map<std::string,float>& mapa) {
+  for (std::map<std::string,float>::iterator it=mapa.begin(); it!=mapa.end(); ++it) {   
+    std::cout << it->first << " " << it->second << '\n';
+  }
+ }

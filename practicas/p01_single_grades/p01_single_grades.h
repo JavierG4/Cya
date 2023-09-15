@@ -14,8 +14,18 @@
 // Enlaces de inter´es
 // Historial de revisiones
 // 12/09/2023 - Creaci´on (primera versi´on) del c´odigo
-#include<iostream>
-#include<stdlib.h>
-#include<fstream>
+#ifndef p01_single_grades_h
+#define p01_single_grades_h
 
-void lectura();
+#include <iostream>
+#include <stdlib.h>
+#include <fstream>
+#include <string.h>
+#include <sstream>
+#include <map>
+
+void lectura(std::map<std::string,float>&, std::string);
+void escritura(std::map<std::string,float>&);
+
+
+#endif  // p01_single_grades_h

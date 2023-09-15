@@ -17,10 +17,15 @@
 #include<iostream>
 #include<stdlib.h>
 #include<fstream>
+#include <string.h>
+#include <utility>
+#include <map>
+#include "p01_single_grades.h"
 
-int main(int argc, char *argc[]) { 
-  
-
-
+int main(int argc, char *argv[]) { 
+  std::map<std::string,float> students;
+  std::string parametro = argv[1];
+  lectura(students, parametro);
+  escritura(students);
 
 }

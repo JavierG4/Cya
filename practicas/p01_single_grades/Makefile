@@ -17,7 +17,7 @@ Programa: Programa.o
 
 # The following rule is effectively built into make and
 # therefore need not be explicitly specified: 
-Programa.o: main.cc peronaje.cc salud.cc mochila.cc objetos.cc
+Programa.o: p01_single_grandes_main.cc p01_single_grandes.cc
 #
 	$(CXX) $(CXXFLAGS) -c $<
 
@@ -44,4 +44,5 @@ actu:
 	git add .
 	git commit -m actualización
 	git push
-	
+program:
+	g++ p01_single_grandes_main.cc p01_single_grandes.cc
