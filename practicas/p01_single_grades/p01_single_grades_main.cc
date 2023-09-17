@@ -6,7 +6,7 @@
 // Pr´actica 1: Contenedores asociativos
 // Autor: Javier González Brito
 // Correo: alu0101548197@ull.edu.es
-// Fecha: 14/09/2023
+// Fecha: 17/09/2023
 // Archivo cya-P01-single-grades.cc: programa cliente.
 // Contiene la funci´on main del proyecto que usa las clases X e Y
 // para ... (indicar brevemente el objetivo)
@@ -27,5 +27,24 @@ int main(int argc, char *argv[]) {
   std::string parametro = argv[1];
   lectura(students, parametro);
   escritura(students);
-
+  bool seguir = true;
+  while(seguir == true) {
+    std::cout << "Quieres añadir alumnos y notas ? Pulse 1 para si 2 para no" << std::endl;
+    int eleccion;
+    std::string alumno;
+    float nota;
+    std::cin >> eleccion;
+    if (eleccion == 1) {
+      std::cout << "Escriba el alu y despues su nota" << std::endl;
+      std::cin >> alumno >> nota;
+      if(students[alumno] > nota) {
+        continue;
+      }
+      students[alumno] = nota;
+    }
+    else {
+      seguir = false;
+      escritura(students);
+    }
+  }
 }
