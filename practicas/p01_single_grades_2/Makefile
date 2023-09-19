@@ -45,4 +45,4 @@ actu:
 	git commit -m actualización
 	git push
 program:
-	g++ -g p01_single_grades_main.cc p01_single_grades.cc
+	g++ -g -o programa  p01_single_grades_main_2.cc p01_single_grades_2.cc
