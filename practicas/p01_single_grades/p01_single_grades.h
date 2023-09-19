@@ -4,12 +4,13 @@
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
 // Pr´actica 1: Contenedores asociativos
-// Autor: Nombre y Apellidos
-// Correo: aluXXXXX@ull.edu.es
-// Fecha: 12/09/2023
-// Archivo cya-P01-single-grades.cc: programa cliente.
+// Autor: Javier González Brito
+// Correo: alu0101548197@ull.edu.es
+// Fecha: 19/09/2023
+// Archivo cya-P01-single-grades_main.cc: programa cliente.
 // Contiene la funci´on main del proyecto que usa las clases X e Y
-// para ... (indicar brevemente el objetivo)
+// Programa que le envias por parametros un txt
+// y te escribe las notas de los alumnos y además te da la opcion de añadir notas
 // Referencias:
 // Enlaces de inter´es
 // Historial de revisiones
@@ -24,8 +25,8 @@
 #include <sstream>
 #include <map>
 
-void lectura(std::map<std::string,float>&, std::string);
-void escritura(std::map<std::string,float>&);
+void lectura(std::map<std::string,float>&, std::string); // Definicion de la funcion lectura que se encarga de leer los datos y meterlos en el map
+void escritura(std::map<std::string,float>&);  // Definición de la funcion escritura que se encarga de imprimir la notas y los alus
 
 
 #endif  // p01_single_grades_h

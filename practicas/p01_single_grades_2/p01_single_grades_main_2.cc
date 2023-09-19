@@ -6,10 +6,11 @@
 // Pr´actica 1: Contenedores asociativos
 // Autor: Javier González Brito
 // Correo: alu0101548197@ull.edu.es
-// Fecha: 17/09/2023
+// Fecha: 19/09/2023
 // Archivo cya-P01-single-grades_main.cc: programa cliente.
 // Contiene la funci´on main del proyecto que usa las clases X e Y
-// para ... (indicar brevemente el objetivo)
+// Programa que le envias por parametros un txt
+// y te escribe las notas de los alumnos y además te da la opcion de añadir notas
 // Referencias:
 // Enlaces de inter´es
 // Historial de revisiones
@@ -26,8 +27,8 @@
 int main(int argc, char *argv[]) { 
   std::map<std::string,std::vector<float>> students;
   std::string parametro = argv[1];
-  lectura2(students, parametro);
-  escritura2(students);
+  lectura2(students, parametro); // Parametro 1 Map / Parametro 2 Texto
+  escritura2(students); // Parametro 1 Map 
   bool seguir = true;
   while(seguir == true) {
     std::cout << "Quieres añadir alumnos y notas ? Pulse 1 para si 2 para no" << std::endl;
