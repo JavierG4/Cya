@@ -7,9 +7,10 @@
 #include <string.h>
 #include <sstream>
 #include <map>
+#include <vector>
 
-void lectura(std::map<std::string,std::vector<float>>&, std::string);
-void escritura(std::map<std::string,std::vector<float>>&);
+void lectura2(std::map<std::string,std::vector<float>>&, std::string);
+void escritura2(std::map<std::string,std::vector<float>>&);
 
 
 #endif  // p01_single_grades_2_h

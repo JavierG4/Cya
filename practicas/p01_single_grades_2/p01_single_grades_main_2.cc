@@ -20,8 +20,31 @@
 #include <string.h>
 #include <utility>
 #include <map>
-#include<vector.h>
+#include<vector>
+#include "p01_single_grades_2.h"
 
 int main(int argc, char *argv[]) { 
   std::map<std::string,std::vector<float>> students;
   std::string parametro = argv[1];
+  lectura2(students, parametro);
+  escritura2(students);
+  bool seguir = true;
+  while(seguir == true) {
+    std::cout << "Quieres añadir alumnos y notas ? Pulse 1 para si 2 para no" << std::endl;
+    int eleccion;
+    std::string alumno;
+    float nota;
+    std::cin >> eleccion;
+    if (eleccion == 1) {
+      std::cout << "Escriba el alu y despues su nota" << std::endl;
+      std::cin >> alumno >> nota;
+      students[alumno].emplace_back(nota);
+      continue;
+    }
+    else {
+      seguir = false;
+      escritura2(students);
+    }
+  }
+  return 0;
+}

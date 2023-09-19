@@ -4,10 +4,10 @@
 #include <string.h>
 #include <sstream>
 #include <map>
-#include "p01_single_grades.h"
-#include<vector.h>
+#include "p01_single_grades_2.h"
+#include<vector>
 
-void lectura(std::map<std::string,std::vector<float>>& mapa, std::string param){
+void lectura2(std::map<std::string,std::vector<float>>& mapa, std::string param){
   std::ifstream archivo{param};
   std::string texto;
   std::string alu;
@@ -17,11 +17,15 @@ void lectura(std::map<std::string,std::vector<float>>& mapa, std::string param){
     exit(1);
   }
   while(archivo >> alu >> nota) {        
-    mapa[alu].insert(nota);
+    mapa[alu].emplace_back(nota);
   }
 }
-void escritura(std::map<std::string,float>& mapa) {
-  for (std::map<std::string,std::vector<float>>::iterator it=mapa.begin(); it!=mapa.end(); ++it) {   
-    std::cout << it->first << " " << it->second << '\n';
+void escritura2(std::map<std::string,std::vector<float>>& mapa) {
+  for (std::map<std::string,std::vector<float>>::iterator it=mapa.begin(); it!=mapa.end(); ++it) {
+    std::cout << it->first << " ";
+    for(int j = 0;j < mapa[it->first].size();j++){
+      std::cout << it->second.at(j) << " ";
+    }
+    std::cout << '\n';
   }
  }
