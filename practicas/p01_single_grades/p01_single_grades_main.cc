@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
   lectura(students, parametro); // Parametro 1 Map / Parametro 2 Texto
   escritura(students); // Parametro 1 Map
   bool seguir = true;
-  while(seguir == true) { // While para añadir alumnos y notas
+  while (seguir == true) { // While para añadir alumnos y notas
     std::cout << "Quieres añadir alumnos y notas ? Pulse 1 para si 2 para no" << std::endl;
     int eleccion;
     std::string alumno;
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
     if (eleccion == 1) {
       std::cout << "Escriba el alu y despues su nota" << std::endl;
       std::cin >> alumno >> nota;
-      if(students[alumno] > nota) {
+      if (students[alumno] > nota) {
         continue;
       }
       students[alumno] = nota;

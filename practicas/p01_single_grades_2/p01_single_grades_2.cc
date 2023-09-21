@@ -46,3 +46,17 @@ void escritura2(std::map<std::string,std::vector<float>>& mapa) { // Imprime en 
     std::cout << '\n';
   }
  }
+ void eliminar(std::map<std::string,std::vector<float>>& mapa) { // Parametro 1 Map - Funcion que te elimina un numerocl
+  float numero;
+  std::cout << "Que numero deseas eliminar " << std::endl;
+  std::cin >> numero;
+  for (std::map<std::string,std::vector<float>>::iterator it=mapa.begin(); it!=mapa.end(); ++it) {
+    for(int j = 0;j < mapa[it->first].size();j++){
+      if (it->second.at(j) == numero){
+        //mapa[it->first].swap(it->second.back());
+        //mapa[it->first].pop_back(j);
+        mapa[it->first].erase(it->second.begin()+j);
+      }
+    }
+ }
+ }

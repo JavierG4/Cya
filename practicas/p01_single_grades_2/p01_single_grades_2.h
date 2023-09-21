@@ -28,6 +28,7 @@
 
 void lectura2(std::map<std::string,std::vector<float>>&, std::string); // Definicion de la funcion lectura que se encarga de leer los datos y meterlos en el map
 void escritura2(std::map<std::string,std::vector<float>>&); // Definición de la funcion escritura que se encarga de imprimir la notas y los alus
+void eliminar(std::map<std::string,std::vector<float>>&); // Definición de la funcion eliminar que le pasas un valor y te lo elimina - Param 1 map
 
 
 #endif  // p01_single_grades_2_h

@@ -32,14 +32,15 @@ void lectura(std::map<std::string,float>& mapa, std::string param){
     std::cout << "No se puedo abrir el archivo";
     exit(1);
   }
-  while(archivo >> alu >> nota) {   // Se añaden en el map las notas y los alus       
+  while (archivo >> alu >> nota) {   // Se añaden en el map las notas y los alus       
     if(mapa[alu] > nota) { // si la nota es mayor se cambia por la anterior, sino se queda la anterior
       continue;
     }
     mapa[alu] = nota;
   }
 }
-void escritura(std::map<std::string,float>& mapa) { // Imprime en pantalla en los alumnos y sus notas
+
+void escritura (std::map<std::string,float>& mapa) { // Imprime en pantalla en los alumnos y sus notas
   for (std::map<std::string,float>::iterator it=mapa.begin(); it!=mapa.end(); ++it) {   
     std::cout << it->first << " " << it->second << '\n';
   }
