@@ -1,0 +1,21 @@
+if((argc == 2 && entrada != "--help") || argc == 3 ) { // comprobar que se especifican los archivos por linea de comandos
+		std::cout << "Error. Se debe especificar el nombre de un archivo de linea de entrada y otro de salido en el comando, ademas de la operacion deseada" << std::endl;
+		std::cout << "A continuacion, estas son las diferentes operaciones: " << std::endl;
+		std::cout << "1: escribir en el fichero de salida el alfabeto asociado a cada una de las cadenas de entrada " << std::endl;
+		std::cout << "2: escribir en el fichero de salida la longitud de cada cadena de entrada" << std::endl;
+		std::cout << "3: escribir en el fichero de salida la inversa de cada cadena de entrada" << std::endl;
+		std::cout << "4: escribir en el fichero de salida el conjunto de cadenas que son prefijos de la cadena de entrada correspondiente" << std::endl;
+		std::cout << "5: escribir en el fichero de salida el conjunto de cadenas que son sufijos de la cadena de entrada correspondiente" << std::endl;
+		return 0;
+	}
+
+  if(argc < 3 && argv[2] != "--help" ) {  // comprobar que se especifica los archivos por linea de comandos
+		std::cout << "Error. Se debe especificar el nombre de un archivo de linea de entrada y otro de salida en el comando, ademas de la operacion deseada" << std::endl;
+		std::cout << "A continuacion, estas son las diferentes operaciones: " << std::endl;
+		std::cout << "1: escribir en el fichero de salida el alfabeto asociado a cada una de las cadenas de entrada " << std::endl;
+		std::cout << "2: escribir en el fichero de salida la longitud de cada cadena de entrada" << std::endl;
+		std::cout << "3: escribir en el fichero de salida la inversa de cada cadena de entrada" << std::endl;
+		std::cout << "4: escribir en el fichero de salida el conjunto de cadenas que son prefijos de la cadena de entrada correspondiente" << std::endl;
+		std::cout << "5: escribir en el fichero de salida el conjunto de cadenas que son sufijos de la cadena de entrada correspondiente" << std::endl;
+		return 0;
+	}
