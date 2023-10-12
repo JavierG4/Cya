@@ -52,16 +52,18 @@ int main(int argc, char* argv[]) {
 	if (opcion == "2"){ 
 		cadenas.longitud(entrada,salida);
 	}
-	/*
-	if (opcion == "4"){ 
-		cadenas.longitud(entrada,salida);
-	}
+	
 	if (opcion == "3"){ 
-		cadenas.longitud(entrada,salida);
+		cadenas.inversa(entrada,salida);
 	}
+	
+	if (opcion == "4"){ 
+		cadenas.prefijos(entrada,salida);
+	}
+	
 	if (opcion == "5"){ 
-		cadenas.longitud(entrada,salida);
+		cadenas.sufijos(entrada,salida);
 	}
- */
+ 
 
 }

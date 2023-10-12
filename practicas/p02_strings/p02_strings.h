@@ -26,9 +26,9 @@ class Cadena {
  public:
    void alfabeto(std::string,std::string);
    void longitud(std::string,std::string);
-   //void inversa(std::string,std::string);
-   //void prefijos(std::string,std::string);
-   //void sufijos(std::string,std::string);
+   void inversa(std::string,std::string);
+   void prefijos(std::string,std::string);
+   void sufijos(std::string,std::string);
  private:
 
 };

@@ -6,14 +6,15 @@
 // Pr´actica 1: Contenedores asociativos
 // Autor: Javier González Brito
 // Correo: alu0101548197@ull.edu.es
-// Fecha: 17/09/2023
-// Archivo cya-P01-single-grades_main.cc: programa cliente.
+// Fecha: 26/09/2023
+// Archivo p02_stings.cc
 // Contiene la funci´on main del proyecto que usa las clases X e Y
-// Programa que le envias por parametros un txt
-// y te escribe las notas de los alumnos y además te da la opcion de añadir notas
+// Programa que le envias 3 parametros por línea de comando
+// El primero es la entrada.txt, el segundo la salida.txt y el 3 sirve para decidir que tripo de operacion qieires realizar
 // Enlaces de inter´es
 // Historial de revisiones
-// 12/09/2023 - Creaci´on (primera versi´on) del c´odigo
+// 20/09/2023 - Creaci´on (primera versi´on) del c´odigo
+
 #include<iostream>
 #include<stdlib.h>
 #include<fstream>
@@ -21,33 +22,8 @@
 #include <utility>
 #include "p02_strings.h"
 #include <set>
+#include "p02_alfabeto.h"
 
-  void Cadena::alfabeto(std::string entrada, std::string salida) {
-    std::ifstream archivo_entrada{entrada};
-    std::ofstream archivo_salida{salida};
-    std::string linea;
-    while (getline(archivo_entrada, linea)){
-      archivo_salida << "{";
-      std::set<char> alfabet;
-      for (int i = 0; i < linea.length(); i++){
-        alfabet.insert(linea.at(i));
-      }
-      std::set<char>::iterator contador=alfabet.begin();
-      contador++;
-      for (std::set<char>::iterator it=alfabet.begin(); it!=alfabet.end(); ++it) {
-        if(contador != alfabet.end()) { 
-          archivo_salida << *it << ",";
-        }
-        else {
-          archivo_salida << *it;
-
-        }
-        contador++;
-      }
-      archivo_salida << "}" << std::endl;
-    }
-
-  }
   void Cadena::longitud(std::string entrada, std::string salida) {
     std::ifstream archivo_entrada{entrada};
     std::ofstream archivo_salida{salida};
@@ -57,6 +33,7 @@
       archivo_salida << longitud << std::endl;
     }
   }
+
   void Cadena::inversa(std::string entrada, std::string salida) {
     std::ifstream archivo_entrada{entrada};
     std::ofstream archivo_salida{salida};
@@ -68,6 +45,7 @@
       archivo_salida << std::endl;
     }
   }
+
   void Cadena::prefijos(std::string entrada, std::string salida){
     std::ifstream archivo_entrada{entrada};
     std::ofstream archivo_salida{salida};
@@ -90,34 +68,65 @@
       archivo_salida << "}" << std::endl;
     }
   }
+
   void Cadena::sufijos(std::string entrada, std::string salida) {
     std::ifstream archivo_entrada{entrada};
     std::ofstream archivo_salida{salida};
     std::string linea;
     while (getline(archivo_entrada, linea)){
-      archivo_salida << "{&,";
-      std::string auxiliar;
-      int contador = linea.length();
-      contador--;
-      for (int i = linea.length(); i > 0; i--){
-        std::string auxiliar2;
-        if(contador == 0) {
-          auxiliar += linea.at(i);
-          for(int k = auxiliar.length(); i > 0; k--) {
-            auxiliar2 += auxiliar.at(k);
-          }
-          archivo_salida << auxiliar2;
-        }
-        else {
-          auxiliar += linea.at(i);
-          for(int k = auxiliar.length(); i > 0; k--) {
-            auxiliar2 += auxiliar.at(k);
-          }
-          archivo_salida << auxiliar2 << ",";
-        }
-        contador--;
-      }
-      archivo_salida << "}" << std::endl;
+      archivo_salida << "{&, ";
+      for(int i = 0; i < linea.length(); ++i) {
+        int contador = i;
+        for(int j = linea.length() -1; j - contador < linea.length(); --contador) { 
+				if((j - contador != linea.length() -1) || (j - contador == linea.length() -1 && i == linea.length() - 1)) { 
+					archivo_salida << linea[j - contador];
+				}
+				else {
+					archivo_salida << linea[j - contador] << ", ";
+				}
+
+			}
+		}
+		archivo_salida << "}" << std::endl;
   }
 }
 
+void Cadena::concatenar(std::string entrada) {
+  std::ifstream archivo_entrada{entrada};
+  std::string linea;
+  std::string resultado;
+  while (getline(archivo_entrada, linea)){ 
+    for (int i = 0; i < linea.length(); i++){
+      resultado += linea.at(i);
+    }
+  }
+  std::ofstream archivo_salida{entrada};
+  archivo_salida << resultado << std::endl;
+}
+
+/*
+std::string Cadena::concatenar(std::string entrada) {
+  std::ifstream archivo_entrada{entrada};
+  std::string linea;
+  std::string resultado;
+  while (getline(archivo_entrada, linea)){ 
+    for (int i = 0; i < linea.length(); i++){
+      resultado += linea.at(i);
+    }
+  }
+  return resultado;
+}
+*/
+/*void Cadena::todo(std::string entrada, std::string salida) {
+  Cadena resultado;
+   std::ofstream archivo_salida{salida};
+  resultado.longitud(entrada,salida);
+  archivo_salida << "-----------------------" << std::endl;
+  resultado.inversa(entrada,salida);
+  archivo_salida << "-----------------------" << std::endl;
+  resultado.prefijos(entrada,salida);
+  archivo_salida << "-----------------------" << std::endl;
+  resultado.sufijos(entrada,salida);
+  archivo_salida << "-----------------------" << std::endl;
+}
+*/
