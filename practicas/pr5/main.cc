@@ -63,12 +63,11 @@ int main (int argc, char* argv[]) {
     int aceptado = 0;
     posicion = 0;
     estados_actuales.resize(0);
-    estados_actuales.emplace_back(conjunto.get_conjunto_de_estados()[inicial]);
+    estados_actuales.push_back(conjunto.get_conjunto_de_estados()[inicial]);
     while (line.length() > posicion) {
       bool encontrado = 0;
       for (int i = 0; i < estados_actuales.size(); i++){
-        for (const int &elemento : aux) {
-          //std::cout << "Ebbbbb" << std::endl;
+        for (const char &elemento : aux) {
           if (elemento == line[posicion] || line[posicion] == '&' ) { // comprobamos que el elemtno pertenece al alfabeto
             encontrado = 1;
             break;
@@ -78,12 +77,9 @@ int main (int argc, char* argv[]) {
           std::cout << line << " --- Rejected" << std::endl;
           break;
         }
-        std::multimap <char, int > map = conjunto.get_conjunto_de_estados()[i].get_siguiente_estado();   // recorremos las transiciones de los estados que pertenecen al estado actual
+        std::multimap <char, int > map = estados_actuales[i].get_siguiente_estado();  // recorremos las transiciones de los estados que pertenecen al estado actual
         auto rango = map.equal_range(line[posicion]);  // rango contiene todos los valores asociados a un simbolo concreto
-        //auto encontrar = map.find(); // comprobamos si hay & transiciones
-        //std::cout << "Eeee" << std::endl;
         for (auto it = rango.first; it != rango.second; ++it) {
-          //std::cout << "Eeee" << std::endl;
           estados_siguientes.emplace_back(conjunto.get_conjunto_de_estados()[it -> second]); // añadimos a proximo estado todo lo que tenga coomo transicion epsilon
         }
       }
