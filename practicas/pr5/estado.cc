@@ -50,10 +50,3 @@ void Estado::set_siguiente_estado(std::multimap<char, int> siguiente_estado){
   siguiente_estado_ = siguiente_estado;
 
 }
-
-void Estado::Reset() {
-  transiciones_ = 0;
-  n_estado_ = 0;
-  aceptacion_ = 0;
-  siguiente_estado_.clear();
-}

@@ -58,7 +58,7 @@ int main (int argc, char* argv[]) {
   std::vector<Estado> estados_siguientes;
   std::string line;
   int posicion;
-  //conjunto.print();
+  conjunto.print();
   while (getline(cadenas,line)){
     int aceptado = 0;
     posicion = 0;
@@ -68,7 +68,7 @@ int main (int argc, char* argv[]) {
       bool encontrado = 0;
       for (int i = 0; i < estados_actuales.size(); i++){
         for (const char &elemento : aux) {
-          if (elemento == line[posicion] || line[posicion] == '&' ) { 
+          if (elemento == line[posicion] || line[posicion] == '&' ) { // comprobamos que el elemtno pertenece al alfabeto
             encontrado = 1;
             break;
           }
@@ -77,17 +77,10 @@ int main (int argc, char* argv[]) {
           std::cout << line << " --- Rejected" << std::endl;
           break;
         }
-        std::multimap <char, int > map = estados_actuales[i].get_siguiente_estado();  
-        auto rango = map.equal_range(line[posicion]);  
-        auto encontrar = map.find('&');
-        if(encontrar != map.end()) {
-          auto rango_ = map.equal_range('&'); 
-          for (auto it_ = rango.first; it_ != rango.second; ++it_) {
-            estados_siguientes.push_back(conjunto.get_conjunto_de_estados()[it_ -> second]); 
-          }
-        }
+        std::multimap <char, int > map = estados_actuales[i].get_siguiente_estado();  // recorremos las transiciones de los estados que pertenecen al estado actual
+        auto rango = map.equal_range(line[posicion]);  // rango contiene todos los valores asociados a un simbolo concreto
         for (auto it = rango.first; it != rango.second; ++it) {
-          estados_siguientes.emplace_back(conjunto.get_conjunto_de_estados()[it -> second]); 
+          estados_siguientes.emplace_back(conjunto.get_conjunto_de_estados()[it -> second]); // añadimos a proximo estado todo lo que tenga coomo transicion epsilon
         }
       }
       estados_actuales.resize(estados_siguientes.size());
