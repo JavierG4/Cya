@@ -45,4 +45,4 @@ actu:
 	git commit -m actualización
 	git push
 program:
-	g++ -g -o automata main.cc fa.cc alfabeto.cc estado.cc
+	g++ -g -o automata mainprueba.cc fa.cc alfabeto.cc estado.cc
