@@ -12,6 +12,7 @@
 class Estado {
  public:
    Estado(std::multimap<char, int>, bool, int, int);
+   Estado();
    int get_n_estado();
    void set_n_estado(int);
 

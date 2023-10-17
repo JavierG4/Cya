@@ -7,6 +7,13 @@ Estado::Estado(std::multimap<char, int> transiciones, bool aceptacion, int ntran
   n_estado_ = nestado;
 }
 
+Estado::Estado(){
+  siguiente_estado_ = std::multimap<char, int>();
+  aceptacion_ = bool();
+  transiciones_ = int();
+  n_estado_ = int();
+}
+
 int Estado::get_n_estado() {
   return n_estado_;
 }
@@ -44,7 +51,7 @@ void Estado::set_siguiente_estado(std::multimap<char, int> siguiente_estado){
 
 }
 
-void Estado::Reset () {
+void Estado::Reset() {
   transiciones_ = 0;
   n_estado_ = 0;
   aceptacion_ = 0;

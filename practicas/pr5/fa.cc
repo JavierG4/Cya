@@ -37,6 +37,7 @@ void Automata::print(){
     std::cout << "El estado inicial es " << estado_inicial_ << std::endl;
     std::cout << "\n  Transiciones:\n\n";
     for(int i = 0; i < conjunto_de_estados_.size(); i++){
+        std::cout << " El estado " << i << " tiene aceptacion " << conjunto_de_estados_[i].get_aceptacion() << std::endl;
         std::cout << " El estado " << i << " tiene estas transiciones -" << std::endl;
         for (const auto& par : conjunto_de_estados_.at(i).get_siguiente_estado()) { 
             std::cout << "    Simbolo necesario para producirse la transición: "; 
