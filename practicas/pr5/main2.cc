@@ -1,3 +1,20 @@
+// Universidad de La Laguna
+// Escuela Superior de Ingenier´ıa y Tecnolog´ıa
+// Grado en Ingenier´ıa Inform´atica
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Pr´actica 5:mplementación de un simulador de autómatas finitos 
+// Autor: Javier González Brito
+// Correo: alu0101548197@ull.edu.es
+// Fecha: 17/09/2023
+// Archivo main2.cc
+// Contiene la funci´on main de implementación de un simulador de autómatas finitos 
+// Programa que le envias por parametros un input.fa y un cadenas.txt
+// y te imprime si han sido aceptadas
+// Enlaces de inter´es
+// Historial de revisiones
+// 14/09/2023 - Creaci´on (primera versi´on) del c´odigo
+
 #include<iostream>
 #include<stdlib.h>
 #include<fstream>
@@ -59,7 +76,24 @@ int main (int argc, char* argv[]) {
     Estado estado_n(transiciones_x, aceptacion, transiciones, n_estado);
     conjunto.Add_estado(estado_n);
   }
-
+  for(int j = 0; j < conjunto.get_conjunto_de_estados().size(); j++) {
+    bool muerte = 0;
+    for (const auto& par : conjunto.get_conjunto_de_estados()[j].get_siguiente_estado()) {
+      if(par.second == conjunto.get_conjunto_de_estados()[j].get_n_estado() && conjunto.get_conjunto_de_estados()[j].get_aceptacion() != 1) {
+        muerte = 1;
+      }
+      else {
+        muerte = 0;
+      }
+    }
+    std::cout << "El estado " << j;
+    if(muerte == 0) {
+      std::cout << " No es de muerte" << std::endl;
+    }
+    else{
+      std::cout << " Si es de muerte" << std::endl;
+    }
+  }
   std::string archivo2 = argv[2];
   std::ifstream cadenas{archivo2};
   std::vector<Estado> estados_actuales;
@@ -87,9 +121,9 @@ int main (int argc, char* argv[]) {
           break;
         }
         std::multimap <char, int > map = estados_actuales[i].get_siguiente_estado();  // Apartir de aquí recorremos los estados actuales uno por uno y vemos sus transiciones
-        auto rango = map.equal_range(line[posicion]);  
-        for(int i = 0; i < estados_actuales.size(); i++){
-          for (const auto& par : estados_actuales[i].get_siguiente_estado()) { 
+        auto rango = map.equal_range(line[posicion]); 
+        for(int n = 0; n < estados_actuales.size(); n++){
+          for (const auto& par : estados_actuales[n].get_siguiente_estado()) {
             if (par.first == '&' ){
               std::cout << par.first << std::endl;
               std::cout << par.second << std::endl;
@@ -100,7 +134,7 @@ int main (int argc, char* argv[]) {
               std::cout << estados_actuales.size() << std::endl;
             }
           }
-        } 
+        }
         for (auto it = rango.first; it != rango.second; ++it) {
           estados_siguientes.emplace_back(conjunto.get_conjunto_de_estados()[it -> second]); 
         }

@@ -1,3 +1,20 @@
+// Universidad de La Laguna
+// Escuela Superior de Ingenier´ıa y Tecnolog´ıa
+// Grado en Ingenier´ıa Inform´atica
+// Asignatura: Computabilidad y Algoritmia
+// Curso: 2º
+// Pr´actica 5:mplementación de un simulador de autómatas finitos 
+// Autor: Javier González Brito
+// Correo: alu0101548197@ull.edu.es
+// Fecha: 17/09/2023
+// Archivo fa.h
+// Contiene la implementacion de la clase automata
+// Programa que le envias por parametros un input.fa y un cadenas.txt
+// y te imprime si las cadenas han sido aceptadas o no
+// Enlaces de inter´es
+// Historial de revisiones
+// 14/09/2023 - Creaci´on (primera versi´on) del c´odigo
+
 #include<iostream>
 #include<stdlib.h>
 #include<fstream>
