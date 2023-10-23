@@ -57,12 +57,12 @@ class Automata {
    std::vector<Estado> get_conjunto_de_estados();           //@brief Funcion que devuelve el vector de conjuntos de estado
                                                             //@Params no parametros
                                                             //@Return devuelve un vector que contiene estados
-                                                            
    void Add_estado(Estado);       //@brief Funcion añade un estado al conjunto de estados
                                   //@Params un estado que deseas añadir
                                   //@Return no devuelve nada
+   void epsilon_transicones(std::vector<Estado>&);
 
-
+   std::vector<Estado> delta_transiciones(char, std::vector<Estado>&);
 
   void print();
  private:

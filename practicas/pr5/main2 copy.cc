@@ -100,7 +100,6 @@ int main (int argc, char* argv[]) {
   std::vector<Estado> estados_siguientes;
   std::string line;
   int posicion;
-  conjunto.print();
   //conjunto.print();
   //Inicio del algoritmo
   while (getline(cadenas,line)){ // leemos cadena por cadena
