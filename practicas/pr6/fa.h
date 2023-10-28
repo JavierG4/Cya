@@ -25,6 +25,7 @@
 #include "alfabeto.h"
 #include "estado.h"
 #include <vector>
+#include <stack>
 
 #ifndef FA_H
 #define FA_H
@@ -60,9 +61,11 @@ class Automata {
    void Add_estado(Estado);       //@brief Funcion añade un estado al conjunto de estados
                                   //@Params un estado que deseas añadir
                                   //@Return no devuelve nada
-   void epsilon_transicones(std::vector<Estado>&);
+   std::vector<Estado> epsilon_transiciones(std::vector<Estado>);
 
-   std::vector<Estado> delta_transiciones(char, std::vector<Estado>&);
+   std::vector<Estado> delta_transiciones(const char, std::vector<Estado>);
+
+   Automata Todfa() const;
 
   void print();
  private:

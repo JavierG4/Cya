@@ -73,7 +73,6 @@ class Estado {
 
    void set_visitado(bool);
 
-
  private:
    std::multimap<char, int> siguiente_estado_;
    int transiciones_;

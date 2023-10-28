@@ -9,13 +9,15 @@
 #include "estado.h"
 #include "fa.h"
 #include <algorithm>
+#include <stack>
 
 int main (int argc, char* argv[]) {
-  if(argc < 3) {   // comprobar si escribieron parametros de entrada
+  /*if(argc < 3) {   // comprobar si escribieron parametros de entrada
     std::cout << "Para ejecutar el programa haga ./automata input.fa cadenas.txt " << std::endl;
     std::cout << "Pruebe ./automata --help para mas informacion. " << std::endl;
     return 0;
   }
+  */
   std::string help_1 = argv[1];
   if(help_1 == "--help") {  // opcion para mostrar una breve ayuda sobre el comando
     std::cout << "Para ejecutar este programa necesitas un archivo input.fa en el que tienes definidos los datos de un autómata" << std::endl;
@@ -45,12 +47,12 @@ int main (int argc, char* argv[]) {
   conjunto.set_estado_inicial(inicial);
   int n_estado;
 // Asigancion de valores a estados y su posterior implementacion en el automata
-  while(fa >> n_estado) {
+  while (fa >> n_estado) {
     bool aceptacion;
     int transiciones;
     std::multimap<char, int> transiciones_x;
     fa >> aceptacion >> transiciones;
-    for(int i = 0; i < transiciones; i++){
+    for (int i = 0; i < transiciones; i++) {
       char simbolo;
       int estado_siguiente;
       fa >> simbolo >> estado_siguiente;
@@ -59,10 +61,5 @@ int main (int argc, char* argv[]) {
     Estado estado_n(transiciones_x, aceptacion, transiciones, n_estado);
     conjunto.Add_estado(estado_n);
   }
-  std::vector<Estado> estados_actuales;
-  estados_actuales.push_back(conjunto.get_conjunto_de_estados()[inicial]);
-  std::cout << estados_actuales.size() << std::endl;
-  conjunto.epsilon_transicones(estados_actuales);
-  std::cout << estados_actuales.size() << std::endl;
-  conjunto.print();
+  
 }
