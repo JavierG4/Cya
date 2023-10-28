@@ -66,4 +66,5 @@ int main (int argc, char* argv[]) {
   Gramatica gramatica(arranque,alfabet,setterminales,produccionesmap);
   gramatica.print();
   gramatica.transoformacion_a_chomksy();
+  gramatica.print();
 } 

@@ -26,6 +26,10 @@ std::set<char> Alfabeto::get_set() {
   return alfabeto_;
 }
 
-void Alfabeto::set_set(std::set<char> a){
-	alfabeto_ = a;
+void Alfabeto::set_set(std::set<char> set){
+	alfabeto_ = set;
+}
+
+void Alfabeto::set_valor(char symbol){
+	alfabeto_.insert(symbol);
 }

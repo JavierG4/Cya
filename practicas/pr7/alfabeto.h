@@ -34,6 +34,7 @@ class Alfabeto{
    std::set<char> get_set();                   // Brief@ funcion que se encarga de devolver el valor del set privado
                                                // parametros ninguno
    void set_set(std::set<char>);
+   void set_valor(char);
  private:
    std::set<char> alfabeto_;                   //set, atributo privado
 };

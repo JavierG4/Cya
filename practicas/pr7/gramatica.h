@@ -23,7 +23,7 @@
 #include <string.h>
 #include <map>
 #include <vector>
-
+#include <algorithm>
 
 #ifndef GRAMATICA_H
 #define GRAMATICA_H
@@ -50,7 +50,8 @@ class Gramatica{
    void transoformacion_a_chomksy();
 
    char buscar_identificador();
-
+   
+   std::set<char> producciones_terminales();
  private:
    char estado_arranque_;
    Alfabeto alfabeto_; // Noterminales
