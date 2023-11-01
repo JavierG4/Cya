@@ -1,9 +1,9 @@
 #include "gramatica.h"
 
-Gramatica::Gramatica(char arranque ,Alfabeto alfabeto ,std::set<char> terminales,std::multimap<char, std::string> transiciones){
+Gramatica::Gramatica(char arranque ,Alfabeto alfabeto ,std::set<char> noterminales,std::multimap<char, std::string> transiciones){
     estado_arranque_ = arranque;
     alfabeto_ = alfabeto;
-    terminales_ = terminales;
+    noterminales_ = noterminales;
     producciones_ = transiciones;
 }
 
@@ -21,11 +21,11 @@ void Gramatica::set_alfabeto(Alfabeto alfabeto){
     alfabeto_ = alfabeto;
 }
 
-std::set<char> Gramatica::get_terminales(){
-    return terminales_;
+std::set<char> Gramatica::get_noterminales(){
+    return noterminales_;
 }
-void Gramatica::set_terminales(std::set<char> noterminales){
-    terminales_ = noterminales;
+void Gramatica::set_noterminales(std::set<char> noterminales){
+    noterminales_ = noterminales;
 }
 
 std::multimap<char, std::string> Gramatica::get_producciones(){
@@ -33,6 +33,31 @@ std::multimap<char, std::string> Gramatica::get_producciones(){
 }
 void Gramatica::set_producciones(std::multimap<char, std::string> transiciones){
     producciones_ = transiciones;
+}
+
+void Gramatica::print_out(std::string salida){
+  std::ofstream out{salida};
+  out << std::endl;
+  auto set = noterminales_;
+  auto iterador = set.begin();
+  for(int i = 0; i < set.size(); ++i) {
+    char no_terminal = *iterador;
+    auto encontrar = producciones_.find(no_terminal);
+    if(encontrar != producciones_.end()) {
+      auto rango = producciones_.equal_range(no_terminal);
+      out << no_terminal << "---> ";
+      for(auto it = rango.first; it != rango.second; ++it) {
+        out << it -> second;
+        if(std::next(it) != rango.second) {
+          out << "|";
+        }
+      }
+      out << std::endl;
+    }
+    ++iterador;
+  }
+  out << "-------------------------\n";
+
 }
 
 void Gramatica::print(){
@@ -44,12 +69,11 @@ void Gramatica::print(){
   }
   std::cout << " " << std::endl;
   std::cout << "Estos son los terminales " << std::endl;
-  for(char notermin : terminales_){
+  for(char notermin : noterminales_){
     std::cout << notermin << " ";
   }
   std::cout << "\n";
-  std::cout <<std::endl;
-  std::set<char> set = alfabeto_.get_set();
+  std::set<char> set = noterminales_;
   auto iterador = set.begin();
   for(int i = 0; i < set.size(); ++i) {
     char no_terminal = *iterador;
@@ -72,7 +96,7 @@ void Gramatica::print(){
 // A ++ B ++ C ++ 
 char Gramatica::buscar_identificador() {
   char identificador = 'A';
-  for (auto alfabeto : alfabeto_.get_set()) {
+  for (auto alfabeto : get_noterminales()) {
     if ( identificador != alfabeto ){
       return identificador;
     }
@@ -86,7 +110,7 @@ char Gramatica::buscar_identificador() {
 std::set<char> Gramatica::producciones_terminales(){
   std::set<char> resultado;
   for (auto it = producciones_.begin(); it != producciones_.end(); ++it) {
-    for (char a : terminales_){
+    for (char a : alfabeto_.get_set()){
       if ( it->second[0] == a && it->second.size() == 1) {
         resultado.insert(it->second[0]);
       }
@@ -102,7 +126,7 @@ void Gramatica::transoformacion_a_chomksy(){
       return;
     }
     if (it->second.size() == 1) {
-      for (auto termin: alfabeto_.get_set()) {
+      for (auto termin: get_noterminales()) {
         for(auto aux2 : it -> second) {
           if ( aux2 == termin ){
             std::cout << "Tiene producciones unitarias en " << it->first << " -> " << termin << std::endl;
@@ -118,7 +142,7 @@ void Gramatica::transoformacion_a_chomksy(){
     //std::cout << it1->second << std::endl;
     if ( tam >= 2 ) {
       for (auto iterador: it1->second ) { // Compruebo los char de la string para ver si hay terminales
-        for (auto termin : terminales_) { // Compruebo el set de los terminales
+        for (auto termin : alfabeto_.get_set()) { // Compruebo el set de los terminales
           //std::cout << iterador << termin << std::endl;
           if (iterador == termin) { // Si es un terminal lo que hay en la string 
             //std::cout << "Si" << std::endl;
@@ -127,7 +151,7 @@ void Gramatica::transoformacion_a_chomksy(){
             auto it = terminales_solos.find(iterador);
             if ( it == terminales_solos.end() ) { 
               char identi = buscar_identificador();
-              alfabeto_.set_valor(identi);
+              noterminales_.insert(identi);
               std::string aux4;
               aux4 += iterador;
               producciones_.emplace(identi, aux4);
@@ -138,10 +162,9 @@ void Gramatica::transoformacion_a_chomksy(){
     }
   }
   remplazar();
-  print();
   std::string prox_cadenas;
   std::string cadenas_actuales;
-  for (auto elemento : alfabeto_.get_set() ) {
+  for (auto elemento : noterminales_ ) {
     auto rango = producciones_.equal_range(elemento);
     for (auto it = rango.first; it != rango.second;) {  // revisar cadenas mayores o iguasles que tres
       prox_cadenas = "";
@@ -156,7 +179,7 @@ void Gramatica::transoformacion_a_chomksy(){
       for (int i = 0; i < cadena.size() -2; ++i) {
         for (int j = 0; j < letras.size(); ++j) {
           pertenece = 0;
-          for (auto elemento : alfabeto_.get_set() ) {
+          for (auto elemento : noterminales_ ) {
             if (elemento == letras[j]) {
               pertenece = 1;
               break;
@@ -164,7 +187,7 @@ void Gramatica::transoformacion_a_chomksy(){
           }
           if (!pertenece) {
             prox_cadenas += letras[j];
-            alfabeto_.set_valor(letras[j]);  // crear no terminales necesarios
+            noterminales_.insert(letras[j]);  // crear no terminales necesarios
             break;
           }
         }
@@ -198,7 +221,7 @@ void Gramatica::transoformacion_a_chomksy(){
 
 void Gramatica::remplazar(){
   for (auto it = producciones_.begin(); it != producciones_.end(); ++it) {
-    for (auto terminal : terminales_) {
+    for (auto terminal : alfabeto_.get_set()) {
       if ( it->second[0] == terminal && it->second.size() == 1) {
         for (auto it2 = producciones_.begin(); it2 != producciones_.end(); ++it2) {
           for (char aux : it2->second ){ 
@@ -212,29 +235,27 @@ void Gramatica::remplazar(){
   }
 }
 
-
-/*std::ostream& operator<<(std::ostream& out, Gramatica& a) {
-  std::cout <<std::endl;
-  Alfabeto alfabeto = a.GetAlfabeto();
-  std::set<char> set = a.GetNoTerminales();
+std::ostream& operator<<(std::ostream& out, Gramatica& a) {
+  out << std::endl;
+  Alfabeto alfabeto = a.get_alfabeto();
+  auto set = a.get_noterminales();
   auto iterador = set.begin();
   for(int i = 0; i < set.size(); ++i) {
     char no_terminal = *iterador;
-    auto encontrar = produccionesS.find(no_terminal);
-    if(encontrar != produccionesS.end()) {
-      auto rango = produccionesS.equal_range(no_terminal);
-      std::cout << no_terminal << "---> ";
+    auto encontrar = a.get_producciones().find(no_terminal);
+    if(encontrar != a.get_producciones().end()) {
+      auto rango = a.get_producciones().equal_range(no_terminal);
+      out << no_terminal << "---> ";
       for(auto it = rango.first; it != rango.second; ++it) {
-        std::cout << it -> second;
+        out << it -> second;
         if(std::next(it) != rango.second) {
-          std::cout << "|";
+          out << "|";
         }
       }
-      std::cout << std::endl;
+      out << std::endl;
     }
     ++iterador;
   }
-  std::cout << "-------------------------\n";
+  out << "-------------------------\n";
   return out;
 }
-*/

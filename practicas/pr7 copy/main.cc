@@ -11,11 +11,13 @@
 #include <stack>
 
 int main (int argc, char* argv[]) {
-  if(argc < 2) {   // comprobar si escribieron parametros de entrada
-    std::cout << "Para ejecutar el programa haga ./Grammar2CNF input.gra output.gra  " << std::endl;
-    std::cout << "Pruebe ./Grammar2CNF --help para mas informacion. " << std::endl;
+  /*if(argc < 4) {   // comprobar si escribieron parametros de entrada
+    std::cout << "Para ejecutar el programa haga ./automata input.fa cadenas.txt " << std::endl;
+    std::cout << "Pruebe ./automata --help para mas informacion. " << std::endl;
     return 0;
   }
+  
+  */
 
   std::string help_1 = argv[1];
   if(help_1 == "--help") {  // opcion para mostrar una breve ayuda sobre el comando
@@ -60,13 +62,13 @@ int main (int argc, char* argv[]) {
     gra >> produccion;
     produccionesmap.emplace(noterminal,produccion);
   }
-  alfabet.set_set(alfabeto);
-  Gramatica gramatica(arranque,alfabet,setterminales,produccionesmap);
+  alfabet.set_set(setterminales);
+  Gramatica gramatica(arranque,alfabet,alfabeto,produccionesmap);
+  //std::cout << gramatica;
   gramatica.print();
-  gramatica.transoformacion_a_chomksy();
-  //std::string salida = argv[2];
-  //std::ofstream out{salida};
-  gramatica.print();
+  gramatica.transoformacion_a_chomksy();;
+  std::string salida = argv[2];
+  gramatica.print_out(salida);
   //out << gramatica.get_alfabeto();
-  //out << gramatica;
+  //salir << gramatica;
 } 

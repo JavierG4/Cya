@@ -39,14 +39,15 @@ class Gramatica{
    Alfabeto get_alfabeto();
    void set_alfabeto(Alfabeto);
 
-   std::set<char> get_terminales();
-   void set_terminales(std::set<char>);
+   std::set<char> get_noterminales();
+   void set_noterminales(std::set<char>);
 
    std::multimap<char, std::string> get_producciones();
    void set_producciones(std::multimap<char, std::string>);
    
    void print();
 
+   void print_out(std::string);
    void transoformacion_a_chomksy();
 
    char buscar_identificador();
@@ -56,9 +57,9 @@ class Gramatica{
  private:
    char estado_arranque_;
    Alfabeto alfabeto_; // Terminales
-   std::set<char> terminales_; // Noterminales
+   std::set<char> noterminales_; // Noterminales
    std::multimap<char, std::string> producciones_;
 };
-  //std::ostream& operator<<(std::ostream&,Gramatica&);
+  std::ostream& operator<<(std::ostream&,Gramatica&);
 
 #endif  // GRAMATICA_H
