@@ -11,13 +11,11 @@
 #include <stack>
 
 int main (int argc, char* argv[]) {
-  /*if(argc < 4) {   // comprobar si escribieron parametros de entrada
+  if(argc < 2) {   // comprobar si escribieron parametros de entrada
     std::cout << "Para ejecutar el programa haga ./automata input.fa cadenas.txt " << std::endl;
     std::cout << "Pruebe ./automata --help para mas informacion. " << std::endl;
     return 0;
   }
-  
-  */
 
   std::string help_1 = argv[1];
   if(help_1 == "--help") {  // opcion para mostrar una breve ayuda sobre el comando
@@ -62,13 +60,34 @@ int main (int argc, char* argv[]) {
     gra >> produccion;
     produccionesmap.emplace(noterminal,produccion);
   }
-  alfabet.set_set(setterminales);
-  Gramatica gramatica(arranque,alfabet,alfabeto,produccionesmap);
+  bool correcto = 1;
+  std::set<char> ambos;
+  char ep = '&';
+  ambos.insert(ep);
+  for (auto aux : setterminales ) {
+    ambos.insert(aux);
+  }
+  for (auto aux :alfabeto) {
+    ambos.insert(aux);
+  }
+  std::set<char> comparacion = ambos;
+  for (auto it = produccionesmap.begin(); it != produccionesmap.end(); ++it) {
+    comparacion.insert(it->first);
+    for (auto aux1 : it->second) {
+      comparacion.insert(aux1);
+    }
+  }
+  if ( comparacion != ambos ) {
+    //std::cout << ambos.size() << " - " << comparacion.size() << std::endl;
+    std::cout << "Hay terminales o no terminales en las producciones que no pertenecen al alfabeto o al conjunto de no terminales" << std::endl;
+  }
+  else { 
+    alfabet.set_set(setterminales);
+    Gramatica gramatica(arranque,alfabet,alfabeto,produccionesmap);
   //std::cout << gramatica;
-  gramatica.print();
-  gramatica.transoformacion_a_chomksy();;
-  std::string salida = argv[2];
-  gramatica.print_out(salida);
-  //out << gramatica.get_alfabeto();
-  //salir << gramatica;
+    gramatica.print();
+    gramatica.transoformacion_a_chomksy();;
+    std::string salida = argv[2];
+    gramatica.print_out(salida);
+  }
 } 

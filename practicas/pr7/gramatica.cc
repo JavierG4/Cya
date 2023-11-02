@@ -36,38 +36,18 @@ void Gramatica::set_producciones(std::multimap<char, std::string> transiciones){
 }
 
 void Gramatica::print(){
-  std::cout << "El estado de arranque es " << estado_arranque_ << std::endl;
-  auto aux = alfabeto_.get_set();
-  std::cout << "Estos son los no terminales" << std::endl;
-  for ( char terminales: aux){
-    std::cout << terminales << " ";
+  std::cout << alfabeto_.get_set().size() << std::endl;
+  for ( char terminales: alfabeto_.get_set()){
+    std::cout << terminales << std::endl;
   }
-  std::cout << " " << std::endl;
-  std::cout << "Estos son los terminales " << std::endl;
+  std::cout << terminales_.size() << std::endl;
   for(char notermin : terminales_){
-    std::cout << notermin << " ";
+    std::cout << notermin << std::endl;
   }
-  std::cout << "\n";
-  std::cout <<std::endl;
-  std::set<char> set = alfabeto_.get_set();
-  auto iterador = set.begin();
-  for(int i = 0; i < set.size(); ++i) {
-    char no_terminal = *iterador;
-    auto encontrar = producciones_.find(no_terminal);
-    if(encontrar != producciones_.end()) {
-      auto rango = producciones_.equal_range(no_terminal);
-      std::cout << no_terminal << "---> ";
-      for(auto it = rango.first; it != rango.second; ++it) {
-        std::cout << it -> second;
-        if(std::next(it) != rango.second) {
-          std::cout << "|";
-        }
-      }
-      std::cout << std::endl;
-    }
-    ++iterador;
+  std::cout
+  for (auto it = producciones_.begin(); it != producciones_.end(); ++it) {
+    std::cout << it->first << " " << it->second << std::endl;
   }
-  std::cout << "-------------------------\n";
 }
 // A ++ B ++ C ++ 
 char Gramatica::buscar_identificador() {
