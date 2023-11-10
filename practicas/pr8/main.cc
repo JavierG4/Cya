@@ -7,9 +7,7 @@
 #include <map>
 #include <vector>
 #include <algorithm>
-#include <stack>
 #include "maquina_turing.h"
-
 
 int main (int argc, char* argv[]) {
   /*if(argc < 4) {   // comprobar si escribieron parametros de entrada
@@ -28,19 +26,40 @@ int main (int argc, char* argv[]) {
   }
   std::string archivo = argv[1];
   std::ifstream maquina{archivo};
-  
-  //Turing mt
-
-
-
-
-
-
-
-
-
-
-
-
-
+  int estados;
+  int arranque;
+  int aceptado;
+  maquina >> estados;
+  maquina >> arranque;
+  maquina >> aceptado;
+  int ntransiciones;
+  std::vector<Transicion> transiciones;
+  maquina >> ntransiciones;
+  for (int i = 0; i < ntransiciones; i++) {
+    int inicial;
+    int siguiente;
+    char read;
+    char write;
+    char movimiento;
+    maquina >> inicial;
+    maquina >> read;
+    maquina >> write;
+    maquina >> movimiento;
+    maquina >> siguiente;
+    Transicion transicion_(inicial,siguiente,read,write,movimiento);
+    transiciones.push_back(transicion_);
+  }
+  std::string archivo2 = argv[2];
+  std::ifstream cadena2{archivo2};
+  std::string cinta_cadena;
+  cadena2 >> cinta_cadena;
+  std::set<char> alfabeto_cinta;
+  for (auto letra : cinta_cadena) {
+    alfabeto_cinta.insert(letra);
+  }
+  Alfabeto alfabeto;
+  alfabeto.set_set(alfabeto_cinta);
+  Tape cinta(cinta_cadena,alfabeto);
+  Turing tm(arranque, aceptado ,estados, transiciones, cinta);
+  tm.print();
 }

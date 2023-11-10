@@ -45,4 +45,4 @@ actu:
 	git commit -m actualización
 	git push
 program:
-	g++ -g -o Grammar2CNF main.cc gramatica.cc alfabeto.cc 
+	g++ -g -o Turing main.cc maquina_turing.cc alfabeto.cc transicion.cc tape.cc

@@ -12,9 +12,8 @@
 // Enlaces de inter´es
 // Historial de revisiones
 // 14/09/2023 - Creaci´on (primera versi´on) del c´odigo
-
-#ifndef TURING_H
-#define TURING_H
+#ifndef TRANSICION_H
+#define TRANSICION_H
 
 #include<iostream>
 #include<stdlib.h>
@@ -26,27 +25,24 @@
 #include <vector>
 #include <algorithm>
 #include <stack>
-//#include "alfabeto.h"
-#include "transicion.h"
-#include "tape.h"
 
-class Turing {
+
+class Transicion {
  public:
-   Tape get_cinta();
-   Turing(int, int,int,std::vector<Transicion>,Tape);
-   int get_estado_arranque();
-   int get_estado_aceptacion();
-   std::vector<Transicion> get_transiciones();
-   int get_numero_de_estados();
-   void print();
-   void print_cinta();
-   //void simulate
+   Transicion(int,int,char,char,char);
+   int get_estado_inicial();
+   int get_estado_siguiente();
+   char get_simbolo_read();
+   char get_simbolo_write();
+   char get_movimiento();
+
  private:
-   int estado_de_arranque_;
-   int estado_de_aceptacion_;
-   std::vector<Transicion> transiciones_;
-   int numero_de_estados;
-   Tape cinta_;
+   int estado_inicial_;
+   int estado_siguiente_;
+   char simbolo_read_;
+   char simbolo_write_;
+   char movimiento_;
 };
 
-#endif  // TURING_H
+
+#endif  // TRANSICION

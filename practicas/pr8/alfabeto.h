@@ -12,6 +12,8 @@
 // Enlaces de inter´es
 // Historial de revisiones
 // 14/09/2023 - Creaci´on (primera versi´on) del c´odigo
+#ifndef ALFABETO_H
+#define ALAFABETO_H
 
 #include<iostream>
 #include<stdlib.h>
@@ -20,10 +22,6 @@
 #include <utility>
 #include <set>
 #include <vector>
-
-#ifndef ALFABETO_H
-#define ALAFABETO_H
-
 
 class Alfabeto{
  public:
