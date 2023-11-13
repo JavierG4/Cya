@@ -40,7 +40,11 @@ class Turing {
    int get_numero_de_estados();
    void print();
    void print_cinta();
-   //void simulate
+   bool Existe_transicion(int,char);
+   char Simbolo_write(int,char);
+   int Siguiente_estado(int,char);
+   char Right_or_left(int,char);
+   void Simulate();
  private:
    int estado_de_arranque_;
    int estado_de_aceptacion_;

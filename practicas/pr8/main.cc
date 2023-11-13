@@ -53,6 +53,10 @@ int main (int argc, char* argv[]) {
   std::ifstream cadena2{archivo2};
   std::string cinta_cadena;
   cadena2 >> cinta_cadena;
+  std::string aux = "$";
+  aux = aux + cinta_cadena;
+  aux = aux + "$";
+  cinta_cadena = aux;
   std::set<char> alfabeto_cinta;
   for (auto letra : cinta_cadena) {
     alfabeto_cinta.insert(letra);
@@ -62,4 +66,5 @@ int main (int argc, char* argv[]) {
   Tape cinta(cinta_cadena,alfabeto);
   Turing tm(arranque, aceptado ,estados, transiciones, cinta);
   tm.print();
+  tm.Simulate();
 }

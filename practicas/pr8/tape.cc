@@ -3,6 +3,7 @@
 Tape::Tape(std::string cadena,Alfabeto alfabeto){
   cinta_ = cadena;
   alfabeto_cinta = alfabeto;
+  pointer = 1;
 }
 
 int Tape::get_pointer() {
@@ -34,12 +35,11 @@ Alfabeto Tape::get_alfabeto(){
 }
 
 void Tape::print_cinta(int estado){
-  std::cout << "$";
   for ( int i = 0; i < cinta_.size(); i++) {
-    std::cout << cinta_[i];
     if( pointer == i ) {
       std::cout << " q" << estado << " ";
     }
+    std::cout << cinta_[i];
   }
-  std::cout << "$";
+  std::cout << "" << std::endl;
 }
