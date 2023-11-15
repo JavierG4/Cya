@@ -29,11 +29,32 @@
 
 class Transicion {
  public:
+   // @brief Constructor de la clase
+   // @param int del estado inicial
+   // @param int del estado siguiente
+   // @param char del simbolo que se lee
+   // @param char del simbolo que se escribe
+   // @param char del simbolo que hace el movimiento
    Transicion(int,int,char,char,char);
+
+   // @brief Funcion que devuelve el estado inicial
+   // @return int de estado inicial
    int get_estado_inicial();
+
+   // @brief Funcion que devuelve el estado siguiente
+   // @return int del estado siguiente
    int get_estado_siguiente();
+
+   // @brief Funcion que devuelve el char read
+   // @return char del read
    char get_simbolo_read();
+
+   // @brief Funcion que devuelve el char del write
+   // @return char del write
    char get_simbolo_write();
+
+   // @brief Funcion que devuelve el char del movimiento
+   // @return el char del movimiento
    char get_movimiento();
 
  private:

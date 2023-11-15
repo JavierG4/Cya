@@ -12,6 +12,12 @@ int Tape::get_pointer() {
 
 void Tape::Left() {
   pointer--;
+  if ( pointer == 0 ) {
+    std::string aux = "$";
+    aux = aux + cinta_;
+    cinta_ = aux;
+    pointer++;
+  }
 }
 
 char Tape::read() {
@@ -20,6 +26,10 @@ char Tape::read() {
 
 void Tape::right() {
   pointer++;
+  if (pointer == cinta_.size() ) {
+    std::string aux = "$";
+    cinta_ = cinta_ + aux;
+  }
 }
 
 void Tape::write(char a) {

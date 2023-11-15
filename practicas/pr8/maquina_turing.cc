@@ -84,12 +84,12 @@ void Turing::Simulate() {
   bool notransi = false;
   bool aceptado = false;
   cinta_.print_cinta(estado_lectura);
-  while ( notransi == false && aceptado == false ) {
+  while ( notransi == false ) {
     char read = cinta_.read();
     bool encontrar_transicion = Existe_transicion(estado_lectura,read);
     if ( encontrar_transicion == false ) {
       notransi = true;
-      cinta_.print_cinta(estado_lectura);
+      //cinta_.print_cinta(estado_lectura);
     }
     else {
       char aux = Right_or_left(estado_lectura,read);
@@ -112,7 +112,7 @@ void Turing::Simulate() {
   if ( aceptado == true ){
     std::cout << "CADENA ACEPTADA" << std::endl;
   }
-  if ( notransi == true) {
+  if ( notransi == true && aceptado == false ) {
     std::cout << "CADENA RECHAZADA" << std::endl;
   }
 }

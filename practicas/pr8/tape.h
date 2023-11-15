@@ -29,15 +29,42 @@
 
 class Tape {
  public:
+   // @brief Contructor con parametros
+   // @param string que contiene la cinta 
+   // @param alfabeto de la cinta
    Tape(std::string,Alfabeto);
+
+   // @brief contructor por defecto
    Tape() = default;
+
+   // @brief devuelve a donde apunta la cinta
+   // @return int de adonde apunta la cinta
    int get_pointer();
+
+   // @brief hace un --pointer
    void Left();
+
+   // @brief hace un ++pointer
    void right();
+
+   // @brief funcion que devuelve el char a donde esta apuntando la cinta
+   // @return char a donde esta apuntando la cinta
    char read();
+
+   // @brief funcion que escribe el char que le pasas donde esta apuntando la cinta
+   // @param char que se va a escribir donde apunta la cinta
    void write(char);
+
+   // @brief funcion que te devuelve la cinta
+   // @return string de la cinta
    std::string get_cinta();
+
+   // @brief funcion que devuelve el alfabeto de la cinta
+   // @return alfabeto de la cinta
    Alfabeto get_alfabeto();
+
+   // @brief funcion que imprime la cinta 
+   // @param el estado en el que esta la MT
    void print_cinta(int);
 
  private:
