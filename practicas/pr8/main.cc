@@ -10,18 +10,17 @@
 #include "maquina_turing.h"
 
 int main (int argc, char* argv[]) {
-  /*if(argc < 4) {   // comprobar si escribieron parametros de entrada
-    std::cout << "Para ejecutar el programa haga ./automata input.fa cadenas.txt " << std::endl;
-    std::cout << "Pruebe ./automata --help para mas informacion. " << std::endl;
+  if(argc < 2) {   // comprobar si escribieron parametros de entrada
+    std::cout << "Para ejecutar el programa haga ./Turing ejemplo.tm ejemplo.tape " << std::endl;
+    std::cout << "Pruebe ./Turing --help para mas informacion. " << std::endl;
     return 0;
   }
   
-  */
   std::string help_1 = argv[1];
   if(help_1 == "--help") {  // opcion para mostrar una breve ayuda sobre el comando
-    std::cout << "Para ejecutar este programa necesitas un archivo input.fa en el que tienes definidos los datos de un autómata" << std::endl;
-    std::cout << "Además necesitas un cadenas.txt en el que escribas cadenas para ver si pertenecen al autómata " << std::endl;
-    std::cout << "Ya sabiendo eso puedes ejecutar el programa asi ./automata input.fa cadenas.txt " << std::endl;
+    std::cout << "Para ejecutar este programa necesitas un archivo ejemplo.tm en el que tienes definidos los datos de una MT " << std::endl;
+    std::cout << "Además necesitas un ejemplo.tape en el que escribas la cadena para ver si es aceptada por la MT " << std::endl;
+    std::cout << "Ya sabiendo eso puedes ejecutar el programa asi ./Turing ejemplo.tm ejemplo.tape " << std::endl;
     return 0;
   }
   std::string archivo = argv[1];
