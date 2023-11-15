@@ -35,36 +35,46 @@ int main (int argc, char* argv[]) {
   int ntransiciones;
   std::vector<Transicion> transiciones;
   maquina >> ntransiciones;
-  for (int i = 0; i < ntransiciones; i++) {
-    int inicial;
+  int inicial;
+  int transiciones_while = 0;
+  std::set<int> contador_estados;
+  while ( maquina >> inicial ) {
+    contador_estados.insert(inicial);
     int siguiente;
     char read;
     char write;
     char movimiento;
-    maquina >> inicial;
     maquina >> read;
     maquina >> write;
     maquina >> movimiento;
     maquina >> siguiente;
+    contador_estados.insert(siguiente);
     Transicion transicion_(inicial,siguiente,read,write,movimiento);
     transiciones.push_back(transicion_);
+    transiciones_while++;
   }
-  std::string archivo2 = argv[2];
-  std::ifstream cadena2{archivo2};
-  std::string cinta_cadena;
-  cadena2 >> cinta_cadena;
-  std::string aux = "$";
-  aux = aux + cinta_cadena;
-  aux = aux + "$";
-  cinta_cadena = aux;
-  std::set<char> alfabeto_cinta;
-  for (auto letra : cinta_cadena) {
-    alfabeto_cinta.insert(letra);
+  //std::cout << contador_estados.size() << " e " << std::endl;
+  if ( transiciones_while != ntransiciones || contador_estados.size() != estados ) {
+    std::cout << "Ha habido un error en la maquina de Turing escrita" << std::endl;
   }
-  Alfabeto alfabeto;
-  alfabeto.set_set(alfabeto_cinta);
-  Tape cinta(cinta_cadena,alfabeto);
-  Turing tm(arranque, aceptado ,estados, transiciones, cinta);
-  tm.print();
-  tm.Simulate();
+  else {
+    std::string archivo2 = argv[2];
+    std::ifstream cadena2{archivo2};
+    std::string cinta_cadena;
+    cadena2 >> cinta_cadena;
+    std::string aux = "$";
+    aux = aux + cinta_cadena;
+    aux = aux + "$";
+    cinta_cadena = aux;
+    std::set<char> alfabeto_cinta;
+    for (auto letra : cinta_cadena) {
+      alfabeto_cinta.insert(letra);
+    }
+    Alfabeto alfabeto;
+    alfabeto.set_set(alfabeto_cinta);
+    Tape cinta(cinta_cadena,alfabeto);
+    Turing tm(arranque, aceptado ,estados, transiciones, cinta);
+    tm.print();
+    tm.Simulate();
+  }
 }
