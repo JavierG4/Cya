@@ -2,8 +2,11 @@
 
 #include "cya.h"
 #include "tree.h"
+#include <algorithm>
+#include <cmath>
 
-typedef std::vector<sub_tree> forest;
+typedef std::vector<EMST::sub_tree> forest;
+
 class point_set : public CyA::point_vector{
  private:
    CyA::tree emst_;

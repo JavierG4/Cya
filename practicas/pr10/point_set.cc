@@ -1,8 +1,13 @@
-#include "cya.h"
-#include "tree.h"
+#include "point_set.h"
 
 //rieraull
-//write
+/*
+
+point_set::euclidean_distance
+merge_subtrees
+find_incident_subtrees
+
+*/
 
 void point_set::compute_arc_vector(CyA::arc_vector &av) const{
   av.clear();
@@ -17,12 +22,13 @@ void point_set::compute_arc_vector(CyA::arc_vector &av) const{
   }
   std::sort(av.begin(), av.end());
 }
+
 void point_set::EMST(void) {
   CyA::arc_vector av;
   compute_arc_vector(av);
   forest st;
   for (const CyA::point &p : *this){
-    sub_tree s;
+    EMST::sub_tree s;
     s.add_point(p);
     st.push_back(s);
   }
@@ -34,4 +40,7 @@ void point_set::EMST(void) {
     }
   }
   emst_ = st[0].get_arcs();
+}
+double point_set::euclidean_distance(const CyA::arc& a) const {
+  return sqrt(pow(a.first.first - a.second.first, 2) + pow(a.first.second - a.second.second , 2));
 }

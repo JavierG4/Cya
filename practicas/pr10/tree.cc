@@ -1,8 +1,4 @@
-#include <iomanip>
-#include <cmath>
-
-#include <algorithm>
-#include <utility>
+#include "tree.h"
 
 namespace EMST {
   sub_tree::sub_tree(void) : arcs_(), points_(), cost_(0){}
